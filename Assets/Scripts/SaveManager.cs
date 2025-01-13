@@ -12,6 +12,8 @@ public class SaveManager : MonoBehaviour
 
    [SerializeField] Text positonText;
 
+   [SerializeField] InputField inputName;
+
    [SerializeField] string userName;
    [SerializeField] int userScore;
    [SerializeField] Vector3 userPosition;
@@ -31,6 +33,8 @@ public class SaveManager : MonoBehaviour
         PlayerPrefs.SetFloat("posX", userPosition.x);
         PlayerPrefs.SetFloat("posY", userPosition.y);
         PlayerPrefs.SetFloat("posZ", userPosition.z);
+
+        LoadData();
     }
 
     void LoadData()
@@ -46,6 +50,24 @@ public class SaveManager : MonoBehaviour
 
     }
 
+
+    public void DeleteData()
+    {
+        PlayerPrefs.DeleteKey("name");
+        PlayerPrefs.DeleteKey("score");
+        PlayerPrefs.DeleteKey("posX");
+        PlayerPrefs.DeleteKey("posY");
+        PlayerPrefs.DeleteKey("posZ");
+
+        PlayerPrefs.DeleteAll();
+
+        LoadData();
+    }
+
+    public void SaveName()
+    {
+        userName = inputName.text;
+    }
 
 }
 
